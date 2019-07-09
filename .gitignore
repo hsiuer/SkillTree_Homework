@@ -259,3 +259,8 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Accounting/Views/Money/Index.cshtml
+/Accounting/Views/Money/ShowHistory.cshtml
+/Accounting/Views/Shared/_MoneyLayout.cshtml
+/Accounting/Controllers/MoneyController.cs
+/Accounting/Models/ViewModels/MoneyViewModel.cs
