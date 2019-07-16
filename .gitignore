@@ -264,3 +264,5 @@ __pycache__/
 /Accounting/Views/Shared/_MoneyLayout.cshtml
 /Accounting/Controllers/MoneyController.cs
 /Accounting/Models/ViewModels/MoneyViewModel.cs
+/Accounting/Models/Data/DataAccess.cs
+/Accounting/Models/Data/IDataAccess.cs
