@@ -1,28 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Accounting.Models.Data;
 using Accounting.Models.EntityFramework;
-using Accounting.Models.ViewModels;
+//using Accounting.Models.ViewModels;
 
 namespace Accounting.Controllers
 {
     public class MoneyController : Controller
     {
         DataAccess _dataAccess = new DataAccess();
+        SkillTreeHomeworkEntities db = new SkillTreeHomeworkEntities();
 
         // GET: Money
         public ActionResult Index()
         {
-            MoneyViewModel moneyViewModel = new MoneyViewModel
-            {
-                Types = GetTypes()
-            };
+            return View();
+        }
 
-            return View(moneyViewModel);
-        }     
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(AccountBook account)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    account.Id = Guid.NewGuid();
+                    db.AccountBook.Add(account);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+            return View(account);
+        }
 
         protected List<SelectListItem> GetTypes()
         {
