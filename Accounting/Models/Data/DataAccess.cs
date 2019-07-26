@@ -17,7 +17,7 @@ namespace Accounting.Models.Data
                 return (from c in _accountData.AccountBook
                         select new MoneyViewModel
                         {
-                            SelectedTypes = c.Categoryyy.ToString(),
+                            SelectedTypes = c.Categoryyy,
                             Date = c.Dateee,
                             Money = c.Amounttt,
                             Note = c.Remarkkk

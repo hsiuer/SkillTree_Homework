@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Accounting.Models.Data;
 using Accounting.Models.EntityFramework;
-//using Accounting.Models.ViewModels;
+using Accounting.Models.ViewModels;
 
 namespace Accounting.Controllers
 {
@@ -23,13 +23,18 @@ namespace Accounting.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(AccountBook account)
+        public ActionResult Index(MoneyViewModel my)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    AccountBook account = new AccountBook();
                     account.Id = Guid.NewGuid();
+                    account.Categoryyy = my.SelectedTypes;
+                    account.Amounttt = my.Money;
+                    account.Dateee = my.Date;
+                    account.Remarkkk = my.Note;
                     db.AccountBook.Add(account);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -39,7 +44,7 @@ namespace Accounting.Controllers
             {
                 ex.ToString();
             }
-            return View(account);
+            return View(my);
         }
 
         protected List<SelectListItem> GetTypes()
