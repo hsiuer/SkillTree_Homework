@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Accounting.Models.ViewModels.MoneyViewModel>
-
+@using Accounting.Helpers
 @{
     Layout = null;
 }
@@ -15,29 +15,30 @@
             @Html.DisplayNameFor(model => model.Date)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Note)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Note)
+            </th>*@
 
     </tr>
 
-@{ var index = 1;}    
-@foreach (var item in Model) {
-    <tr>
-        <td>@(index)</td>
-        <td>
-            @(item.SelectedTypes == "0" ? "收入" : "支出")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Money)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>*@
-    </tr>
-    index++;
-}
-    
+    @{ var index = 1;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(index)</td>
+            <td>
+                @Html.DisplayCategoryColor(item.SelectedTypes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Money)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>*@
+        </tr>
+        index++;
+    }
+
 </table>
